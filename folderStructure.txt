@@ -1,0 +1,30 @@
+metaAdscraper/
+├── src/
+│   ├── core/
+│   │   ├── scraper.ts
+│   │   ├── syncManager.ts
+│   │   └── types.ts
+│   ├── storage/
+│   │   ├── adStorage.ts
+│   │   └── fileManager.ts
+│   ├── utils/
+│   │   ├── helpers.ts
+│   │   ├── logger.ts
+│   │   └── validators.ts
+│   ├── sync/
+│   │   ├── initialSync.ts
+│   │   └── incrementalSync.ts
+│   └── index.ts
+├── tests/
+│   ├── scraper.test.ts
+│   ├── sync.test.ts
+│   └── helpers/
+├── data/
+│   └── pages/
+├── config/
+│   └── default.json
+├── folderStructure.txt
+├── tsconfig.json
+├── package.json
+├── tsconfig.json
+└── README.md
