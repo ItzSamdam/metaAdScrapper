@@ -48,9 +48,40 @@ interface PageSyncStatus {
     syncToken?: string;
 }
 
+interface ScraperConfig {
+    headless: boolean | 'new';
+    timeout: number;
+    userAgent: string;
+    viewport: {
+        width: number;
+        height: number
+    };
+    maxRetries: number;
+    delayBetweenRequests: number;
+}
+
+interface GraphQLResponse {
+    data: {
+        page: {
+            ads: {
+                edges: Array<{
+                    node: MetaAd;
+                    cursor: string;
+                }>;
+                page_info: {
+                    has_next_page: boolean;
+                    end_cursor: string;
+                };
+            };
+        };
+    };
+}
+
 export {
     MetaAd,
     DemographicData,
     RegionData,
-    PageSyncStatus
+    PageSyncStatus,
+    ScraperConfig,
+    GraphQLResponse
 }

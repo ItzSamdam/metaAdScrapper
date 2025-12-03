@@ -10,7 +10,7 @@ export const logger = winston.createLogger({
         winston.format.errors({ stack: true }),
         winston.format.json()
     ),
-    defaultMeta: { service: 'metaAdScraper' },
+    defaultMeta: { service: 'meta-ads-scraper' },
     transports: [
         new winston.transports.File({
             filename: path.join(logDir, 'error.log'),
