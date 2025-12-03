@@ -57,6 +57,10 @@ export class MetaAdScraper {
             await this.initialize();
         }
 
+        if (!this.page) {
+            throw new Error('Failed to initialize page');
+        }
+
         const responses: GraphQLResponse[] = [];
         let adsCollected = 0;
 
@@ -110,7 +114,7 @@ export class MetaAdScraper {
                 }
 
                 // Scroll down
-                await this.page.evaluate(() => {
+                await this.page?.evaluate(() => {
                     window.scrollBy(0, window.innerHeight);
                 });
 
@@ -194,8 +198,8 @@ export class MetaAdScraper {
                 await delay(this.config.delayBetweenRequests * attempt);
 
                 // Reinitialize browser if needed
-                if (error.message.includes('Session closed') ||
-                    error.message.includes('Target closed')) {
+                if ((error as Error).message.includes('Session closed') ||
+                    (error as Error).message.includes('Target closed')) {
                     await this.close();
                     await this.initialize();
                 }
