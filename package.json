@@ -1,0 +1,38 @@
+{
+    "name": "metaadscraper",
+    "version": "1.0.0",
+    "description": "Meta Ads Library Scraper with incremental sync",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "dev": "ts-node-dev src/index.ts",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "lint": "eslint src/**/*.ts",
+        "format": "prettier --write src/**/*.ts"
+    },
+    "dependencies": {
+        "ts-node": "^10.9.0",
+        "typescript": "^5.0.0",
+        "winston": "^3.18.3"
+    },
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "@typescript-eslint/eslint-plugin": "^6.0.0",
+        "@typescript-eslint/parser": "^6.0.0",
+        "eslint": "^8.0.0",
+        "prettier": "^3.0.0",
+        "ts-node-dev": "^2.0.0"
+    },
+    "keywords": [
+        "facebook",
+        "meta",
+        "ads",
+        "scraper",
+        "library"
+    ],
+    "author": "Samuel Owadayo",
+    "license": "MIT"
+}
