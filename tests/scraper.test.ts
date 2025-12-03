@@ -29,34 +29,40 @@ describe('Meta Ads Library Scraper', () => {
         it('should handle initialization errors', async () => {
             const invalidScraper = new MetaAdScraper({
                 headless: true,
-                timeout: 1 // Very short timeout to force error
+                timeout: 1000,
+                executablePath: '/invalid/path/to/chrome'
             });
 
-            await expect(invalidScraper.initialize()).rejects.toThrow();
+            try {
+                const initPromise = invalidScraper.initialize();
+                await expect(initPromise).rejects.toThrow();
+            } finally {
+                await invalidScraper.close();
+            }
         });
     });
 
     describe('Ad Storage', () => {
         const testAd = {
             id: 'test-ad-123',
-            page_id: 'test-page-456',
-            page_name: 'Test Page',
-            ad_creative_body: 'Test ad content',
-            ad_snapshot_url: 'https://example.com/ad',
-            ad_delivery_start_time: new Date().toISOString(),
-            ad_snapshot_img_url: 'https://example.com/image.jpg',
-            is_active: true,
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
-        } as any;
+            pageId: 'test-page-456',
+            pageName: 'Test Page',
+            adCreativeBody: 'Test ad content',
+            adSnapShotUrl: 'https://example.com/ad',
+            adDeliveryStartTime: new Date().toISOString(),
+            adSnapShotImgUrl: 'https://example.com/image.jpg',
+            isActive: true,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+        };
 
         it('should save and retrieve ads', async () => {
             await storage.saveAds([testAd]);
-            const retrievedAd = await storage.getAd(testAd.id, testAd.page_id);
+            const retrievedAd = await storage.getAd(testAd.id, testAd.pageId);
 
             expect(retrievedAd).toBeTruthy();
             expect(retrievedAd?.id).toBe(testAd.id);
-            expect(retrievedAd?.pageId).toBe(testAd.page_id);
+            expect(retrievedAd?.pageId).toBe(testAd.pageId);
         });
 
         it('should detect new and updated ads', async () => {
@@ -64,11 +70,11 @@ describe('Meta Ads Library Scraper', () => {
             const newAd = {
                 ...testAd,
                 id: 'new-ad-789',
-                ad_creative_body: 'New ad content'
+                adCreativeBody: 'New ad content'
             };
             const updatedAd = {
                 ...testAd,
-                ad_creative_body: 'Updated content'
+                adCreativeBody: 'Updated content'
             };
 
             const result = await storage.findNewAds(existingAds, [newAd, updatedAd]);

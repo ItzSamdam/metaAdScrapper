@@ -21,7 +21,6 @@ export async function incrementalSync(
 
         // Get existing ads and sync status
         const existingAds = await storage.getPageAds(pageId);
-        const syncStatus = await storage.getSyncStatus(pageId);
 
         logger.info(`Found ${existingAds.length} existing ads for page ${pageId}`);
 
@@ -83,7 +82,7 @@ export async function incrementalSync(
 async function checkDeactivatedAds(
     existingAds: MetaAd[],
     fetchedAds: MetaAd[],
-    pageId: string,
+    _pageId: string,
     storage: AdStorage
 ): Promise<number> {
     const fetchedAdIds = new Set(fetchedAds.map(ad => ad.id));

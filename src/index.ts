@@ -1,3 +1,5 @@
+import { incrementalSync } from './sync/incrementalSync';
+import { initialSync } from './sync/initialSync';
 export { initialSync } from './sync/initialSync';
 export { incrementalSync } from './sync/incrementalSync';
 export { MetaAdScraper } from './core/scraper';

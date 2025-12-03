@@ -40,11 +40,11 @@ export async function initialSync(
         logger.info(`Extracted ${ads.length} ads from responses`);
 
         // Process and save ads
-        const processedAds = processAds(ads, pageId);
+        const processedAds = processAds(ads, pageId || undefined);
         await storage.saveAds(processedAds);
 
         // Update sync status
-        const detectedPageId = processedAds[0]?.page_id || pageId;
+        const detectedPageId = processedAds[0]?.pageId || pageId;
         if (detectedPageId) {
             await storage.updateSyncStatus(
                 detectedPageId,
@@ -58,7 +58,7 @@ export async function initialSync(
         return {
             success: true,
             totalAds: processedAds.length,
-            pageId: detectedPageId
+            pageId: detectedPageId || undefined
         };
 
     } catch (error) {
@@ -76,26 +76,26 @@ export async function initialSync(
 function processAds(ads: any[], detectedPageId?: string): MetaAd[] {
     return ads.map((ad, index) => ({
         id: ad.id || `temp_${Date.now()}_${index}`,
-        ad_snapshot_url: ad.ad_snapshot_url || '',
-        page_id: ad.page_id || detectedPageId || 'unknown',
-        page_name: ad.page_name || 'Unknown Page',
-        ad_creative_body: ad.ad_creative_body || '',
-        ad_creative_link_caption: ad.ad_creative_link_caption,
-        ad_creative_link_description: ad.ad_creative_link_description,
-        ad_creative_link_title: ad.ad_creative_link_title,
-        ad_delivery_start_time: ad.ad_delivery_start_time || new Date().toISOString(),
-        ad_delivery_stop_time: ad.ad_delivery_stop_time,
-        ad_snapshot_img_url: ad.ad_snapshot_img_url || '',
+        adSnapShotUrl: ad.ad_snapshot_url || '',
+        pageId: ad.page_id || detectedPageId || 'unknown',
+        pageName: ad.page_name || 'Unknown Page',
+        adCreativeBody: ad.ad_creative_body || '',
+        adCreativeLinkCaption: ad.ad_creative_link_caption,
+        adCreativeLinkDescription: ad.ad_creative_link_description,
+        adCreativeLinkTitle: ad.ad_creative_link_title,
+        adDeliveryStartTime: ad.ad_delivery_start_time || new Date().toISOString(),
+        adDeliveryStopTime: ad.ad_delivery_stop_time,
+        adSnapshotImgUrl: ad.ad_snapshot_img_url || '',
         currency: ad.currency,
         spend: ad.spend,
         impressions: ad.impressions,
-        demographic_data: ad.demographic_data || [],
-        region_data: ad.region_data || [],
-        is_active: ad.is_active !== undefined ? ad.is_active : true,
-        last_active_time: ad.last_active_time,
-        funding_entity: ad.funding_entity,
+        demographicData: ad.demographic_data || [],
+        regionData: ad.region_data || [],
+        isActive: ad.is_active !== undefined ? ad.is_active : true,
+        lastActiveTime: ad.last_active_time,
+        fundingEntity: ad.funding_entity,
         byline: ad.byline,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
     }));
 }

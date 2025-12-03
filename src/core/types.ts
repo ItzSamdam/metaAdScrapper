@@ -9,7 +9,7 @@ interface MetaAd {
     adCreativeLinkTitle?: string;
     adDeliveryStartTime: string;
     adDeliveryStopTime?: string;
-    adSnapShotImgUrl: string;
+    adSnapShotImgUrl?: string;
     currency?: string;
     spend?: {
         lowerBound: string;
@@ -58,6 +58,7 @@ interface ScraperConfig {
     };
     maxRetries: number;
     delayBetweenRequests: number;
+    executablePath?: string;
 }
 
 interface GraphQLResponse {
