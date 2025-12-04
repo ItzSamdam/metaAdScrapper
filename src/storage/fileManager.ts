@@ -27,7 +27,7 @@ export class FileManager {
             const filePath = path.join(pageDir, `${ad.id}.json`);
             const adData = {
                 ...ad,
-                _synced_at: new Date().toISOString()
+                _syncedAt: new Date().toISOString()
             };
 
             await fs.writeFile(filePath, JSON.stringify(adData, null, 2), 'utf-8');
@@ -114,8 +114,8 @@ export class FileManager {
             const updatedAd = {
                 ...existingAd,
                 ...ad,
-                created_at: existingAd.createdAt, // Preserve original creation date
-                updated_at: new Date().toISOString()
+                createdAt: existingAd.createdAt, // Preserve original creation date
+                updatedAt: new Date().toISOString()
             };
 
             await this.saveAd(updatedAd);
