@@ -14,7 +14,7 @@ A robust Node.js/TypeScript system for fetching, storing, and incrementally sync
 ## Installation
 ```bash
 git clone https://github.com/ItzSamdam/metaAdScrapper
-cd meta-ads-scraper
+cd meta-ad-scraper
 npm install
 npm run build
 npm run dev
