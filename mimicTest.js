@@ -578,7 +578,7 @@ class DemoRunner {
         await this.printHeader('FEATURE 4: INITIAL SYNC FUNCTION');
 
         // Use a real Facebook page for demo (CNN page as example)
-        const demoUrl = 'https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&view_all_page_id=282592881929497';
+        const demoUrl = 'https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=ALL&is_targeted_country=false&media_type=all&search_type=page&view_all_page_id=282592881929497';
 
         console.log('\n🌐 4.1 - Configuration options:');
         console.log('   - Can set max ads limit (e.g., fetch only 3 ads)');
@@ -597,7 +597,7 @@ class DemoRunner {
         console.log('\n⚠️  NOTE: To run actual sync, uncomment the code below');
         console.log('   and add your Facebook Ads Library URL');
 
-        /*
+        // /*
         console.log('\n🚀 Starting actual initial sync (fetching 3 ads max)...');
         const result = await initialSync(demoUrl, 3, {
           headless: true,
@@ -615,7 +615,7 @@ class DemoRunner {
         } else {
           console.log(`❌ Initial sync failed: ${result.error}`);
         }
-        */
+        // */
     }
 
     async demoFeature5_IncrementalSync() {
@@ -642,7 +642,7 @@ class DemoRunner {
         console.log('   2. Wait some time for new ads to appear');
         console.log('   3. Run incremental sync');
 
-        /*
+        // /*
         if (this.demoPageId) {
           console.log(`\n🚀 Testing incremental sync for page: ${this.demoPageId}`);
           const result = await incrementalSync(this.demoPageId, {
@@ -655,7 +655,7 @@ class DemoRunner {
           console.log(`   Updated ads: ${result.updatedAds}`);
           console.log(`   Total ads now: ${result.totalAds}`);
         }
-        */
+        // */
     }
 
     async demoFeature6_DataStructureValidation() {
