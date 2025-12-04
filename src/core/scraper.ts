@@ -23,7 +23,8 @@ export class MetaAdScraper {
     async initialize(): Promise<void> {
         try {
             this.browser = await puppeteer.launch({
-                headless: this.config.headless,
+                // headless: this.config.headless,
+                headless: "new",   // ✅ use the new headless mode
                 args: [
                     '--no-sandbox',
                     '--disable-setuid-sandbox',
@@ -31,8 +32,17 @@ export class MetaAdScraper {
                     '--disable-accelerated-2d-canvas',
                     '--disable-gpu',
                     '--window-size=1920,1080'
-                ]
+                ],
+                timeout: this.config.timeout,
             });
+            // this.browser = await puppeteer.launch({
+            //     headless: "new",   // ✅ use the new headless mode
+            //     args: [
+            //         "--no-sandbox",
+            //         "--disable-setuid-sandbox",
+            //     ],
+            //     timeout: this.config.timeout,
+            // });
 
             this.page = await this.browser.newPage();
             await this.page.setUserAgent(this.config.userAgent);

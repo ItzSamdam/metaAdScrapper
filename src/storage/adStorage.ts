@@ -63,22 +63,56 @@ export class AdStorage {
         return { newAds, updatedAds };
     }
 
+    // private hasAdChanged(oldAd: MetaAd, newAd: MetaAd): boolean {
+    //     // Compare important fields that might change
+    //     const fieldsToCompare = [
+    //         'is_active',
+    //         'ad_delivery_stop_time',
+    //         'ad_creative_body',
+    //         'spend',
+    //         'impressions',
+    //         'demographic_data',
+    //         'region_data'
+    //     ];
+
+    //     return fieldsToCompare.some(field => {
+    //         const oldValue = JSON.stringify((oldAd as any)[field]);
+    //         const newValue = JSON.stringify((newAd as any)[field]);
+    //         return oldValue !== newValue;
+    //     });
+    // }
+
     private hasAdChanged(oldAd: MetaAd, newAd: MetaAd): boolean {
         // Compare important fields that might change
         const fieldsToCompare = [
             'is_active',
             'ad_delivery_stop_time',
             'ad_creative_body',
+            'ad_creative_link_title',
+            'ad_creative_link_description',
+            'ad_creative_link_caption',
             'spend',
             'impressions',
             'demographic_data',
-            'region_data'
+            'region_data',
+            'funding_entity',
+            'byline',
+            'last_active_time'
         ];
 
-        return fieldsToCompare.some(field => {
-            const oldValue = JSON.stringify((oldAd as any)[field]);
-            const newValue = JSON.stringify((newAd as any)[field]);
-            return oldValue !== newValue;
-        });
+        for (const field of fieldsToCompare) {
+            const oldValue = oldAd[field as keyof MetaAd];
+            const newValue = newAd[field as keyof MetaAd];
+
+            // Handle nested objects
+            const oldValueStr = oldValue ? JSON.stringify(oldValue) : 'null';
+            const newValueStr = newValue ? JSON.stringify(newValue) : 'null';
+
+            if (oldValueStr !== newValueStr) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
