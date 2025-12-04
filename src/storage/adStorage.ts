@@ -1,17 +1,23 @@
 import { MetaAd, PageSyncStatus } from '../core/types';
 import { FileManager } from './fileManager';
 import { logger } from '../utils/logger';
+import { normalizeAd } from '../utils/helpers';
 
 export class AdStorage {
     private fileManager: FileManager;
+    // private dataDir: string;
 
     constructor(dataDir?: string) {
         this.fileManager = new FileManager(dataDir);
+        // this.dataDir = dataDir || path.join(process.cwd(), 'data');
+        // this.fileManager = new FileManager(this.dataDir);
     }
 
     async saveAds(ads: MetaAd[]): Promise<void> {
         for (const ad of ads) {
-            await this.fileManager.updateAd(ad);
+            // Normalize before saving
+            const normalizedAd = normalizeAd(ad);
+            await this.fileManager.updateAd(normalizedAd);
         }
         logger.info(`Saved/updated ${ads.length} ads`);
     }

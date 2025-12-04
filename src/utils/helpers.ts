@@ -1,3 +1,5 @@
+import { MetaAd } from "../core/types";
+
 export function delay(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -30,4 +32,24 @@ export function validateAdStructure(ad: any): void {
     if (typeof ad.id !== 'string') throw new Error('id must be string');
     if (typeof ad.page_id !== 'string') throw new Error('page_id must be string');
     if (typeof ad.is_active !== 'boolean') throw new Error('is_active must be boolean');
+
+}
+
+export function normalizeAd(ad: any): MetaAd {
+    return {
+        id: ad.id,
+        pageId: ad.pageId || ad.page_id, // Accept both
+        pageName: ad.pageName || ad.page_name,
+        adCreativeBody: ad.adCreativeBody || ad.ad_creative_body,
+        adSnapShotUrl: ad.adSnapshotUrl || ad.ad_snapshot_url,
+        adDeliveryStartTime: ad.adDeliveryStartTime || ad.ad_delivery_start_time,
+        adSnapShotImgUrl: ad.adSnapshotImgUrl || ad.ad_snapshot_img_url,
+        isActive: ad.isActive ?? ad.is_active ?? true,
+        adDeliveryStopTime: ad.adDeliveryStopTime || ad.ad_delivery_stop_time,
+        spend: ad.spend,
+        impressions: ad.impressions,
+        demographics: ad.demographicData || ad.demographic_data,
+        createdAt: ad.createdAt || ad.created_at || new Date().toISOString(),
+        updatedAt: ad.updatedAt || ad.updated_at || new Date().toISOString()
+    };
 }

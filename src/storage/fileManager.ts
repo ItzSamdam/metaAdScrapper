@@ -7,7 +7,8 @@ export class FileManager {
     private dataDir: string;
 
     constructor(dataDir = 'data') {
-        this.dataDir = dataDir;
+        // this.dataDir = dataDir;
+        this.dataDir = dataDir || path.join(process.cwd(), 'data');
     }
 
     async ensureDirectory(dirPath: string): Promise<void> {

@@ -4,10 +4,10 @@
   "pageName": "Test Page",
   "adCreativeBody": "Test ad content",
   "adSnapShotUrl": "https://example.com/ad",
-  "adDeliveryStartTime": "2025-12-04T14:18:42.124Z",
+  "adDeliveryStartTime": "2025-12-04T15:42:11.689Z",
   "adSnapShotImgUrl": "https://example.com/image.jpg",
   "isActive": true,
   "createdAt": "2025-12-04T14:18:46.973Z",
-  "updatedAt": "2025-12-04T14:18:47.020Z",
-  "_syncedAt": "2025-12-04T14:18:47.021Z"
+  "updatedAt": "2025-12-04T15:42:21.163Z",
+  "_syncedAt": "2025-12-04T15:42:21.163Z"
 }

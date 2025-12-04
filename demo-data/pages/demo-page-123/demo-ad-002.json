@@ -1,0 +1,14 @@
+{
+  "id": "demo-ad-002",
+  "pageId": "demo-page-123",
+  "pageName": "Demo Business Page",
+  "adCreativeBody": "Limited time offer! 50% off",
+  "adSnapShotUrl": "https://facebook.com/ads/library/?id=demo002",
+  "adDeliveryStartTime": "2025-12-03T16:12:02.453Z",
+  "adSnapShotImgUrl": "https://example.com/demo2.jpg",
+  "isActive": false,
+  "adDeliveryStopTime": "2025-12-04T16:12:02.453Z",
+  "createdAt": "2025-12-04T16:06:39.881Z",
+  "updatedAt": "2025-12-04T16:12:02.506Z",
+  "_syncedAt": "2025-12-04T16:12:02.507Z"
+}

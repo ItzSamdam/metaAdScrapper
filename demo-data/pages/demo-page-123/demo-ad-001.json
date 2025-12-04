@@ -1,0 +1,14 @@
+{
+  "id": "demo-ad-001",
+  "pageId": "demo-page-123",
+  "pageName": "Demo Business Page",
+  "adCreativeBody": "UPDATED: This is our latest product ad with changes",
+  "adSnapShotUrl": "https://facebook.com/ads/library/?id=demo001",
+  "adDeliveryStartTime": "2025-12-04T16:12:02.542Z",
+  "adSnapShotImgUrl": "https://example.com/demo1.jpg",
+  "isActive": false,
+  "createdAt": "2025-12-04T16:06:39.852Z",
+  "updatedAt": "2025-12-04T16:12:02.552Z",
+  "_syncedAt": "2025-12-04T16:12:02.553Z",
+  "adDeliveryStopTime": "2025-12-04T16:12:02.542Z"
+}
