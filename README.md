@@ -17,5 +17,20 @@ git clone https://github.com/ItzSamdam/metaAdScrapper
 cd meta-ad-scraper
 npm install
 npm run build
-npm run dev
+```
+
+
+### Test Run
+```bash
+npm run test
+```
+
+### Production Run
+```bash
+npm run prod
+```
+
+### Staging Run
+```bash
+npm run stage
 ```
